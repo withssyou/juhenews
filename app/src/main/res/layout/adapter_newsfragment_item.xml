@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/adapter_newsfragment_item_iv"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/adapter_newsfragment_item_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/adapter_newsfragment_item_iv"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/adapter_newsfragment_item_iv"
+        android:text="惊！今年将遭遇史上最冷春节？今天的最低温拔凉拔凉的"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/adapter_newsfragment_item_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/adapter_newsfragment_item_iv"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/adapter_newsfragment_item_iv"
+        android:text="长江日报"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/adapter_newsfragment_item_date_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/adapter_newsfragment_item_iv"
+        android:layout_marginLeft="10dp"
+        android:layout_alignParentRight="true"
+        android:text="2017-01-09 13:13"
+        android:textSize="12sp" />
+
+</RelativeLayout>

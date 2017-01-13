@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <edu.zhuoxin.feicui.news.view.ActionbarView
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </edu.zhuoxin.feicui.news.view.ActionbarView>
+
+    <FrameLayout
+        android:id="@+id/fragment_fl"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/test_gr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/shouye_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="首页"
+            android:padding="5dp"
+            android:textSize="20sp"
+            android:drawableTop="@drawable/select_root"
+            android:gravity="center"
+            android:drawablePadding="5dp"
+            android:textColor="@color/colorAccent"
+            android:checked="true"
+
+            />
+        <RadioButton
+            android:id="@+id/tuangou_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="团购"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:drawableTop="@drawable/select_root"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            />
+        <RadioButton
+            android:id="@+id/sousuo_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="我的"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:drawableTop="@drawable/select_root"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            />
+        <RadioButton
+            android:id="@+id/wode_rb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="搜索"
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:drawableTop="@drawable/select_root"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            />
+
+    </RadioGroup>
+</LinearLayout>
