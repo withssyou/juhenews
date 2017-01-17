@@ -11,7 +11,6 @@ import com.squareup.picasso.Picasso;
 import edu.zhuoxin.feicui.news.R;
 import edu.zhuoxin.feicui.news.base.BaseBaseAdapter;
 import edu.zhuoxin.feicui.news.entity.NewsInfo;
-import edu.zhuoxin.feicui.news.utils.HttpClientUtil;
 
 /**
  * Created by Administrator on 2017/1/9.

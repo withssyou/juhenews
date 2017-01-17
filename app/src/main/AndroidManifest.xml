@@ -38,8 +38,8 @@
         <activity android:name=".demo.FragmentDemoActivity"></activity>
         <activity android:name=".ui.NewsActivity"></activity>
         <activity android:name=".ui.GuideActivity">
-
         </activity>
+        <activity android:name=".ui.UserActivity"></activity>
 
         <activity
             android:name="com.mob.tools.MobUIShell"

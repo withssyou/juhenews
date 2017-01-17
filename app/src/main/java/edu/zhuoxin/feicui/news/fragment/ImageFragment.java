@@ -8,7 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,7 @@ import edu.zhuoxin.feicui.news.adapter.ImageAdapter;
 import edu.zhuoxin.feicui.news.app.App;
 import edu.zhuoxin.feicui.news.entity.ImageInfo;
 import edu.zhuoxin.feicui.news.entity.ImagetoGank;
-import edu.zhuoxin.feicui.news.utils.HttpClientUtil;
+import edu.zhuoxin.feicui.news.net.HttpClientUtil;
 
 
 /**

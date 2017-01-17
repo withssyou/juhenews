@@ -16,6 +16,13 @@ public class App extends Application {
 
     public static final String IMAGE_BASE = "http://gank.io/";
     public static final String IMAGE_PATH = "api/data/福利/10/1";
+    //用户管理的baseurl
+    public static final String USER_BASE = "http://118.244.212.82:9092/newsClient/";
+
+    //带返回值的跳转的请求码和响应码
+    public static final int REQUESTCODE = 0x110;
+    public static final int RESULTCODE = 0x112;
+
 
     //接口回调的状态码
     public static  final  int SUCCEED = 0x10;

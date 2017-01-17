@@ -1,5 +1,6 @@
 package edu.zhuoxin.feicui.news.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,18 +16,25 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import edu.zhuoxin.feicui.news.R;
+import edu.zhuoxin.feicui.news.app.App;
 import edu.zhuoxin.feicui.news.fragment.CollectionFragment;
 import edu.zhuoxin.feicui.news.fragment.ImageFragment;
 import edu.zhuoxin.feicui.news.fragment.NewsFragment;
 import edu.zhuoxin.feicui.news.fragment.ViewPagerFragment;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+    ImageView user_image;
+    TextView user_name;
     /**
      * 当前显示的fragment
      */
@@ -36,11 +44,14 @@ public class HomeActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //获取头部控件
+//        bindView();
         //初始化系统控件
         initSystemViews();
         //默认显示新闻页面
         showNewsFragment();
     }
+
 
     /**
      * 系统控件初始化
@@ -68,7 +79,14 @@ public class HomeActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        //获取头部控件
+//        ButterKnife.bind(this,drawer);
+        View headView = navigationView.getHeaderView(0);
+        //用户登录和头像
+        user_image = (ImageView) headView.findViewById(R.id.imageView);
+        user_name = (TextView) headView.findViewById(R.id.textView);
+
+        user_name.setOnClickListener(this);
+        user_image.setOnClickListener(this);
     }
 
     //重写按下返回键的方法
@@ -118,22 +136,22 @@ public class HomeActivity extends AppCompatActivity
             //判断当前显示的fragment是否跟用户点击的fragment相同，不相同，添加，相同，吐司提示
             if (!(mCurrentFragment instanceof ViewPagerFragment)) {
                 showNewsFragment();
-            }else {
-                Toast.makeText(this,"无需更新",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "无需更新", Toast.LENGTH_LONG).show();
             }
         } else if (id == R.id.nav_gallery) {
             //添加图片fragment
-            if (!(mCurrentFragment instanceof ImageFragment )) {
+            if (!(mCurrentFragment instanceof ImageFragment)) {
                 showImageFragment();
-            }else {
-                Toast.makeText(this,"无需更新",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "无需更新", Toast.LENGTH_LONG).show();
             }
         } else if (id == R.id.nav_slideshow) {
             //添加收藏fragment
             if (!(mCurrentFragment instanceof CollectionFragment)) {
                 showCollectionFragment();
-            }else {
-                Toast.makeText(this,"无需更新",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "无需更新", Toast.LENGTH_LONG).show();
             }
         } else if (id == R.id.nav_manage) {
 
@@ -148,7 +166,10 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    /**显示新闻的fragment*/
+
+    /**
+     * 显示新闻的fragment
+     */
     private void showNewsFragment() {
         String[] type = new String[]{NewsFragment.TYPE_TOUTIAO, NewsFragment.TYPE_KEJI, NewsFragment.TYPE_GUOJI, NewsFragment.TYPE_SHEHUI};
         ViewPagerFragment viewPagerFragment = new ViewPagerFragment(type);
@@ -162,7 +183,7 @@ public class HomeActivity extends AppCompatActivity
     /**
      * 显示图片fragment
      */
-    private void showImageFragment(){
+    private void showImageFragment() {
         ImageFragment imageFragment = new ImageFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -170,8 +191,11 @@ public class HomeActivity extends AppCompatActivity
         mCurrentFragment = imageFragment;
         ft.commit();
     }
-    /**显示收藏的fragment*/
-    private void showCollectionFragment(){
+
+    /**
+     * 显示收藏的fragment
+     */
+    private void showCollectionFragment() {
         CollectionFragment collectionFragment = new CollectionFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -208,5 +232,35 @@ public class HomeActivity extends AppCompatActivity
 
 // 启动分享GUI
         oks.show(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imageView:
+                break;
+            case R.id.textView:
+                //判断是否是登录状态，登录状态不能点击，未登录状态跳转到登录页面
+                if (user_name.getText().equals("请先登录")) {
+                    startActivityForResult(new Intent(this, UserActivity.class), App.REQUESTCODE);
+                } else {
+                    user_name.setClickable(false);
+                }
+                Toast.makeText(this, "-----", Toast.LENGTH_LONG).show();
+                break;
+        }
+    }
+
+    /**
+     * 用来处理返回值的方法
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data != null) {
+            String name = data.getStringExtra("name");
+//            String token = data.getStringExtra("token");
+            user_name.setText(name);
+        }
     }
 }
